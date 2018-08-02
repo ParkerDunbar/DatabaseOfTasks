@@ -1,15 +1,20 @@
 package com.example.sqlshopsdemo;
 
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.EditText;
+import android.app.AlertDialog;
+import android.widget.ListView;
 
 import java.util.List;
 
 // code take from http://mobilesiri.com/android-sqlite-database-tutorial-using-android-studio/
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,5 +53,45 @@ public class MainActivity extends AppCompatActivity {
 // Writing shops to log
             Log.d("Shop: : ", log);
         }
+    }
+
+    public void addTask(View view) {
+        //does shit
+        // get prompts.xml view
+        final EditText result = (EditText) findViewById(R.id.editTextDialogUserInput);
+        LayoutInflater li = LayoutInflater.from(this);
+        View promptsView = li.inflate(R.layout.custom, null);
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+        // set prompts.xml to alertdialog builder
+        alertDialogBuilder.setView(promptsView);
+
+        final EditText userInput = (EditText) promptsView.findViewById(R.id.editTextDialogUserInput);
+
+        // set dialog message
+        alertDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                // get user input and set it to result
+                                // edit text
+                                ListView tasks = (ListView)findViewById(R.id.TaskList);
+                                result.getText();
+                            }
+                        })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
     }
 }
