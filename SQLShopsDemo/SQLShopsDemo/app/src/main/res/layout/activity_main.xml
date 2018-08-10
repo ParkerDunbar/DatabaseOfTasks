@@ -12,12 +12,10 @@
     tools:context="com.example.sqlshopsdemo.MainActivity">
 
     <ListView
-        android:id="@+id/TaskList"
+        android:id="@+id/task_list"
         android:layout_width="match_parent"
         android:layout_height="406dp"
-        android:layout_weight="3">
-
-    </ListView>
+        android:layout_weight="3"></ListView>
 
     <Button
         android:id="@+id/AddBtn"
