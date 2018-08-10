@@ -12,19 +12,9 @@ public class Task {
     private int id;
     private String task;
     private String time;
-    private Chronometer chronometer;
-    private long pauseOffSet = 0;
-    private boolean isRunning = false;
 
     public Task()
     {
-    }
-
-    public Task(View v, int id, int index, String task, String time) {
-        chronometer = (Chronometer)v.findViewById(id);
-        this.id = index;
-        this.task = task;
-        this.time = time;
     }
 
 
@@ -61,34 +51,5 @@ public class Task {
         return task;
     }
 
-    public Chronometer getChronometer() {
-        return chronometer;
-    }
-    public void setChronometer(Chronometer chronometer) {
-        this.chronometer = chronometer;
-    }
-    public long getPauseOffSet() {
-        return pauseOffSet;
-    }
-    public void setPauseOffSet(long pauseOffSet) {
-        this.pauseOffSet = pauseOffSet;
-    }
-
-
-    public void Start() {
-        if(!isRunning){
-            chronometer.setBase(SystemClock.elapsedRealtime() - pauseOffSet - Long.parseLong(time));
-            chronometer.start();
-            isRunning = true;
-        }
-    }
-    public void Stop() {
-        if(isRunning){
-            chronometer.stop();
-            pauseOffSet = SystemClock.elapsedRealtime() - chronometer.getBase() - Long.parseLong(time);
-            isRunning = false;
-            time = chronometer.getText().toString();
-        }
-    }
 
 }
