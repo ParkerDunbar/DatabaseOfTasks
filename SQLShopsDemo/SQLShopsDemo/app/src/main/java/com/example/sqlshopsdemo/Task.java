@@ -20,9 +20,11 @@ public class Task {
     {
     }
 
-    public Task(View v, int id)
-    {
-        chronometer = (Chronometer)v.findViewById(id);;
+    public Task(View v, int id, int index, String task, String time) {
+        chronometer = (Chronometer)v.findViewById(id);
+        this.id = index;
+        this.task = task;
+        this.time = time;
     }
 
 

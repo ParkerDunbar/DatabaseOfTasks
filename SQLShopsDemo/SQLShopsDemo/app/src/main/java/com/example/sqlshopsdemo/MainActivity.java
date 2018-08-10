@@ -41,7 +41,7 @@ public class MainActivity extends Activity {
         listView.setAdapter(adapter);
     }
 
-    public void addTask(View view) {
+    public void addTask(final View view) {
         // get prompts.xml view
         LayoutInflater li = LayoutInflater.from(this);
         final View promptsView = li.inflate(R.layout.custom, null);
@@ -59,8 +59,9 @@ public class MainActivity extends Activity {
                             public void onClick(DialogInterface dialog,int id) {
                                 // get user input and set it to result
                                 // edit text
-                                String task = userInput.getText().toString();
-                                Task newTask = new Task(task, 0 + "");
+                                String taskName = userInput.getText().toString();
+//                                Task newTask = new Task(task, 0 + "");
+                                Task newTask = new Task(view, R.id.task_time, taskList.size(), taskName, "0");
                                 taskList.add(newTask);
 //                                listItems.add(task);
 //                                adapter.notifyDataSetChanged();

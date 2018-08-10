@@ -36,7 +36,7 @@
         android:layout_alignTop="@+id/task_start"
         android:text="Finish" />
 
-    <TextView
+    <Chronometer
         android:id="@+id/task_time"
         android:layout_width="101dp"
         android:layout_height="45dp"
