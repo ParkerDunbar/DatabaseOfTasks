@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -28,7 +29,7 @@ public class CustomAdapter extends ArrayAdapter<Task> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
 
         if (convertView == null) {
@@ -60,6 +61,14 @@ public class CustomAdapter extends ArrayAdapter<Task> {
             @Override
             public void onClick(View view) {
                 Stop(holder.task_time);
+            }
+        });
+        holder.btn_complete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.taskList.remove(getItem(position));
+                MainActivity.adapter = new CustomAdapter(context, MainActivity.taskList);
+                MainActivity.listView.setAdapter(MainActivity.adapter);
             }
         });
 
