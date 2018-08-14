@@ -3,7 +3,6 @@ package com.example.sqlshopsdemo;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.DialogInterface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,7 +22,7 @@ import java.util.List;
 public class MainActivity extends Activity {
     ListAdapter adapter;
     ListView listView;
-    List<Task> taskList = new ArrayList<>();
+    public static List<Task> taskList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

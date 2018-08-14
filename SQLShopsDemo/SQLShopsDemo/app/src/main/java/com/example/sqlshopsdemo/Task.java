@@ -12,6 +12,7 @@ public class Task {
     private int id;
     private String task;
     private String time;
+    private long pauseOffSet = 0;
 
     public Task()
     {
@@ -50,6 +51,12 @@ public class Task {
     public String getTask() {
         return task;
     }
+    public long getPauseOffSet() {
+        return pauseOffSet;
+    }
 
+    public void setPauseOffSet(long pauseOffSet) {
+        this.pauseOffSet = pauseOffSet;
+    }
 
 }
