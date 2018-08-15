@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -56,13 +57,8 @@ public class CustomAdapter extends ArrayAdapter<Task> {
         holder.btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Start(MainActivity.taskList.get(position).getTaskTime());
                 getItem(position).Start();
 
-//                View tempview = (View) holder.btn_start.getTag(R.integer.btn_start_view);
-//                Chronometer test = (Chronometer) tempview.findViewById(R.id.task_time);
-//                MainActivity.taskList.get(position).setTaskTime(test);
-//                Start(test);
             }
         });
 
@@ -71,28 +67,22 @@ public class CustomAdapter extends ArrayAdapter<Task> {
         holder.btn_stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Stop(MainActivity.taskList.get(position).getTaskTime());
                 getItem(position).Stop();
-//                Stop(holder.task.getTaskTime());
             }
         });
+
+        holder.btn_complete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.taskList.remove(getItem(position));
+                MainActivity.adapter = new CustomAdapter(context, MainActivity.taskList);
+                MainActivity.listView.setAdapter(MainActivity.adapter);
+            }
+        });
+
         return convertView;
     }
 
-//    public Chronometer getChronometer() {
-//        return chronometer;
-//    }
-//    public void setChronometer(Chronometer chronometer) {
-//        this.chronometer = chronometer;
-//    }
-
-    public void Start(Chronometer chronometer) {
-
-    }
-
-    public void Stop(Chronometer chronometer) {
-
-    }
 
     private class ViewHolder {
         protected Button btn_start, btn_stop, btn_complete;
@@ -102,40 +92,3 @@ public class CustomAdapter extends ArrayAdapter<Task> {
 
 
 }
-
-
-//        LayoutInflater inflater = LayoutInflater.from(getContext());
-//        View customView = inflater.inflate(R.layout.task_custom, parent, false);
-//        chronometer = (Chronometer) customView.findViewById(R.id.task_time);
-//
-//        final Task singleTask = getItem(position);
-//        TextView taskName = (TextView) customView.findViewById(R.id.task_name);
-//        Chronometer taskTime = (Chronometer) customView.findViewById(R.id.task_time);
-//
-//        Button startButton = (Button) customView.findViewById(R.id.task_start);
-//        Button stopButton = (Button) customView.findViewById(R.id.task_pause);
-//        Button completeButton = (Button) customView.findViewById(R.id.task_complete);
-//
-//        startButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Start();
-//            }
-//        });
-//
-//        stopButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Stop();
-//            }
-//        });
-//
-//        completeButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
-//
-//        taskName.setText(singleTask.getTask());
-//        taskTime.setText(singleTask.getTime());

@@ -20,8 +20,8 @@ import java.util.List;
 
 
 public class MainActivity extends Activity {
-    ListAdapter adapter;
-    ListView listView;
+    public static ListAdapter adapter;
+    public static ListView listView;
     public static List<Task> taskList = new ArrayList<>();
 
     @Override
