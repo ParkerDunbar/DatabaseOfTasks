@@ -23,6 +23,12 @@ public class Task {
 
     }
 
+    public Task(int id, String task, String time) {
+        this.id = id;
+        this.task = task;
+        this.time = time;
+    }
+
     public Task(int id, String task, String time, View v) {
         this.id = id;
         this.task = task;
