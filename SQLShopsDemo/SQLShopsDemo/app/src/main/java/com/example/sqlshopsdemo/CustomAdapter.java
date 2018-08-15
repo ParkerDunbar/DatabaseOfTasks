@@ -68,6 +68,7 @@ public class CustomAdapter extends ArrayAdapter<Task> {
             @Override
             public void onClick(View view) {
                 getItem(position).Stop();
+                MainActivity.db.updateTask(getItem(position));
             }
         });
 
@@ -77,6 +78,7 @@ public class CustomAdapter extends ArrayAdapter<Task> {
                 MainActivity.taskList.remove(getItem(position));
                 MainActivity.adapter = new CustomAdapter(context, MainActivity.taskList);
                 MainActivity.listView.setAdapter(MainActivity.adapter);
+                MainActivity.db.deleteTask(getItem(position));
             }
         });
 

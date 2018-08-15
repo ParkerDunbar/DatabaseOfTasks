@@ -23,17 +23,14 @@ public class MainActivity extends Activity {
     public static ListAdapter adapter;
     public static ListView listView;
     public static List<Task> taskList = new ArrayList<>();
+    public static DBHandler db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        Task t1 = new Task("Task1", "0");
-//        Task t2 = new Task("Task4", "4232");
-//        Task t3 = new Task("Task7", "215145");
-//        taskList.add(t1);
-//        taskList.add(t2);
-//        taskList.add(t3);
+        db = new DBHandler(this);
 
         adapter = new CustomAdapter(this, taskList);
         listView = (ListView) findViewById(R.id.task_list);
@@ -61,6 +58,7 @@ public class MainActivity extends Activity {
                                 String taskName = userInput.getText().toString();
 //                                Task newTask = new Task(task, 0 + "");
                                 Task newTask = new Task(taskList.size(), taskName, "0", findViewById(R.id.task_time));
+                                db.addTask(newTask);
                                 taskList.add(newTask);
 //                                listItems.add(task);
 //                                adapter.notifyDataSetChanged();
@@ -83,7 +81,6 @@ public class MainActivity extends Activity {
 
 
 
-//        DBHandler db = new DBHandler(this);
 //
 //// Inserting Shop/Rows
 //        Log.d("Insert: ", "Inserting ..");
