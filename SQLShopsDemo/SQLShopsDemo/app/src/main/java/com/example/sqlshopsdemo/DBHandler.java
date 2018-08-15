@@ -56,7 +56,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     // Getting one shop
-    public Task getShop(int id) {
+    public Task getTask(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_TASKS, new String[]{KEY_ID,

@@ -31,7 +31,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         db = new DBHandler(this);
-
+        taskList = db.getAllTasks();
         adapter = new CustomAdapter(this, taskList);
         listView = (ListView) findViewById(R.id.task_list);
         listView.setAdapter(adapter);
