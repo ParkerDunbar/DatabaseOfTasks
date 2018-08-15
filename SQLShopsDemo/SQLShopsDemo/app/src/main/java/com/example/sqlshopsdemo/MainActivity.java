@@ -60,7 +60,7 @@ public class MainActivity extends Activity {
                                 // edit text
                                 String taskName = userInput.getText().toString();
 //                                Task newTask = new Task(task, 0 + "");
-                                Task newTask = new Task(taskList.size(), taskName, "0");
+                                Task newTask = new Task(taskList.size(), taskName, "0", findViewById(R.id.task_time));
                                 taskList.add(newTask);
 //                                listItems.add(task);
 //                                adapter.notifyDataSetChanged();

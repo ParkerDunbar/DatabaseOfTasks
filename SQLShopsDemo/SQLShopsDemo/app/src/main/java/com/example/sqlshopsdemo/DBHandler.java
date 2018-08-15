@@ -65,8 +65,9 @@ public class DBHandler extends SQLiteOpenHelper {
         if (cursor != null)
             cursor.moveToFirst();
 
-        Task contact = new Task(Integer.parseInt(cursor.getString(0)),
-                cursor.getString(1), cursor.getString(2));
+//        Task contact = new Task(Integer.parseInt(cursor.getString(0)),
+//                cursor.getString(1), cursor.getString(2));
+        Task contact = null;
 // return shop
         return contact;
     }
