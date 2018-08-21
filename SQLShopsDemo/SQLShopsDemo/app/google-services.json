@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "960695223116",
+    "firebase_url": "https://sqlshopsdemo.firebaseio.com",
+    "project_id": "sqlshopsdemo",
+    "storage_bucket": "sqlshopsdemo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:960695223116:android:fb70968cfdae92b9",
+        "android_client_info": {
+          "package_name": "com.example.sqlshopsdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "960695223116-bs79eplbhbju9v3f9rh40evjr0ukf0iu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sqlshopsdemo",
+            "certificate_hash": "e8da4bd35c0778b554da5d0f6966ecbd4b482410"
+          }
+        },
+        {
+          "client_id": "960695223116-r2fiieajj02v57uup0nt64sh6bjdkmpt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZMsm0s6YSAxpU8PmraFjuX7VTgpf3tOg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "960695223116-r2fiieajj02v57uup0nt64sh6bjdkmpt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

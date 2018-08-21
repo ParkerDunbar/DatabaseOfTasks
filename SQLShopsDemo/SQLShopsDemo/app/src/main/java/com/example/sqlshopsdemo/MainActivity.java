@@ -13,6 +13,9 @@ import android.app.AlertDialog;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +33,12 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReferenceFromUrl("https://sqlshopsdemo.firebaseio.com/");
+        myRef.setValue("TEST");
+
+
+
         db = new DBHandler(this);
         taskList = db.getAllTasks();
         adapter = new CustomAdapter(this, taskList);

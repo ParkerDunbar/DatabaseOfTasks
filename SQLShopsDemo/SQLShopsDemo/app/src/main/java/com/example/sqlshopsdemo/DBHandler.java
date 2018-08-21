@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +51,7 @@ public class DBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_TASK, task.getTask()); // Shop Name
         values.put(KEY_TIME, task.getTime()); // Shop Phone Number
+        Log.d("TIME", task.getTime());
 
 // Inserting Row
         db.insert(TABLE_TASKS, null, values);

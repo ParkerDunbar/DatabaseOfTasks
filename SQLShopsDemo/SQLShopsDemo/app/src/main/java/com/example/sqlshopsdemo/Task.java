@@ -51,6 +51,7 @@ public class Task {
 
     public void setTime(String time) {
         this.time = time;
+        pauseOffSet = Long.parseLong(time);
     }
 
     public int getId() {
@@ -65,15 +66,9 @@ public class Task {
         return task;
     }
 
-    public long getPauseOffSet() {
-        return pauseOffSet;
-    }
-
-    public void setPauseOffSet(long pauseOffSet) {
-        this.pauseOffSet = pauseOffSet;
-    }
 
     public Chronometer getTaskTime() {
+        taskTime.setBase(SystemClock.elapsedRealtime() - pauseOffSet);
         return taskTime;
     }
 
@@ -94,6 +89,7 @@ public class Task {
             taskTime.stop();
             pauseOffSet = SystemClock.elapsedRealtime() - taskTime.getBase();
             isRunning = false;
+            time = pauseOffSet + "";
         }
     }
 
