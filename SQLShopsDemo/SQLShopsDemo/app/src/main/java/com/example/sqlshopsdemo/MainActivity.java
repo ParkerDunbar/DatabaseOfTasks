@@ -8,13 +8,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Chronometer;
 import android.widget.EditText;
 import android.app.AlertDialog;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,21 +30,47 @@ public class MainActivity extends Activity {
     public static ListAdapter adapter;
     public static ListView listView;
     public static List<Task> taskList = new ArrayList<>();
-    public static DBHandler db;
+//    public static DBHandler db;
+    public static FirebaseDatabase database;
+    public static DatabaseReference myRef;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReferenceFromUrl("https://sqlshopsdemo.firebaseio.com/");
-        myRef.setValue("TEST");
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReferenceFromUrl("https://sqlshopsdemo.firebaseio.com/TaskTable");
+
+        myRef.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                for(DataSnapshot singleSnapshot : dataSnapshot.getChildren()){
+                    TaskObject loadTask = singleSnapshot.getValue(TaskObject.class);
+                    Task newTask = new Task(loadTask, (Chronometer) findViewById(R.id.task_time));
+                    taskList.add(newTask);
+//                    taskList.add(loadTask);
+                    Log.d("Test", "Value is: " + loadTask);
+                }
 
 
+//                dataSnapshot.getValue(TaskObject.class);
+//                TaskObject taskObject = dataSnapshot.getValue(TaskObject.class);
+//                Log.d("Test", "Value is: " + taskObject);
+            }
 
-        db = new DBHandler(this);
-        taskList = db.getAllTasks();
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("Test", "Failed to read value.", error.toException());
+            }
+        });
+//
+//        db = new DBHandler(this);
+//        taskList = db.getAllTasks();
         adapter = new CustomAdapter(this, taskList);
         listView = (ListView) findViewById(R.id.task_list);
         listView.setAdapter(adapter);
@@ -66,8 +96,12 @@ public class MainActivity extends Activity {
                                 // edit text
                                 String taskName = userInput.getText().toString();
 //                                Task newTask = new Task(task, 0 + "");
-                                Task newTask = new Task(taskList.size(), taskName, "0", findViewById(R.id.task_time));
-                                db.addTask(newTask);
+                                TaskObject newTaskObject = new TaskObject(taskList.size(), taskName, "0");
+                                myRef.child(newTaskObject.getId()+"").setValue(newTaskObject);
+                                Task newTask = new Task();
+
+
+//                                db.addTask(newTask);
                                 taskList.add(newTask);
 //                                listItems.add(task);
 //                                adapter.notifyDataSetChanged();

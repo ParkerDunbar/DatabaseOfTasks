@@ -68,14 +68,14 @@ public class CustomAdapter extends ArrayAdapter<Task> {
             @Override
             public void onClick(View view) {
                 getItem(position).Stop();
-                MainActivity.db.updateTask(getItem(position));
+//                MainActivity.db.updateTask(getItem(position));
             }
         });
 
         holder.btn_complete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.db.deleteTask(getItem(position));
+//                MainActivity.db.deleteTask(getItem(position));
                 MainActivity.taskList.remove(getItem(position));
                 MainActivity.adapter = new CustomAdapter(context, MainActivity.taskList);
                 MainActivity.listView.setAdapter(MainActivity.adapter);

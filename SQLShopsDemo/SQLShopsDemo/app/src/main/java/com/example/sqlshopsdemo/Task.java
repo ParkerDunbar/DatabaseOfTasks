@@ -11,9 +11,7 @@ import java.sql.Time;
 import java.util.Timer;
 
 public class Task {
-    private int id;
-    private String task;
-    private String time;
+    private TaskObject taskObject = new TaskObject();
     private Chronometer taskTime;
     private long pauseOffSet = 0;
     private boolean isRunning = false;
@@ -23,47 +21,38 @@ public class Task {
 
     }
 
-    public Task(int id, String task, String time) {
-        this.id = id;
-        this.task = task;
-        this.time = time;
-    }
 
-    public Task(int id, String task, String time, View v) {
-        this.id = id;
-        this.task = task;
-        this.time = time;
+    public Task(TaskObject taskObject, View v) {
+        this.taskObject = taskObject;
         this.taskTime = (Chronometer) v;
     }
 
     public Task(String task, String time) {
-        this.task = task;
-        this.time = time;
+        this.taskObject.setTask(task);
+        this.taskObject.setTime(time);
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+
 
     public void setTask(String task) {
-        this.task = task;
+        this.taskObject.setTask(task);
     }
 
     public void setTime(String time) {
-        this.time = time;
+        this.taskObject.setTime(time);
         pauseOffSet = Long.parseLong(time);
     }
 
     public int getId() {
-        return id;
+        return taskObject.getId();
     }
 
     public String getTime() {
-        return time;
+        return taskObject.getTime();
     }
 
     public String getTask() {
-        return task;
+        return taskObject.getTask();
     }
 
 
@@ -89,7 +78,7 @@ public class Task {
             taskTime.stop();
             pauseOffSet = SystemClock.elapsedRealtime() - taskTime.getBase();
             isRunning = false;
-            time = pauseOffSet + "";
+            taskObject.setTime(pauseOffSet + "");
         }
     }
 
